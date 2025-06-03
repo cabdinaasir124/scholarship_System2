@@ -1,0 +1,900 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins',sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    /* 🎨 Colors */
+    --primary-color: #1e40af; /* Deep Blue */
+    --secondary-color: #2563eb; /* Blue */
+    --accent-color: #f59e0b; /* Amber/Highlight */
+    --light-color: #f8fafc; /* Light background */
+    --dark-color: #0f172a; /* Dark text */
+    --text-color: #1f2937; /* Normal text */
+    --muted-color: #64748b; /* For subtle text */
+  
+    /* 📏 Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+  
+    /* 🔠 Typography */
+    --font-primary: 'Segoe UI', sans-serif;
+    --font-secondary: 'Merriweather', serif;
+  
+    --font-size-sm: 14px;
+    --font-size-base: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 32px;
+    --font-size-hero: 48px;
+  
+    /* 🧱 Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+  
+    /* 🕶️ Shadow */
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+:root {
+  --p-color: #1e40af;      /* Your primary color */
+  --bg-color: #f8fafc;     /* Light background (same as --light-color) */
+  --d-color: #dc2626;      /* Danger red (for btn-danger) */
+  /* ... keep your other variables ... */
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden !important;
+}
+
+/* Custom Website Buttons */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  box-shadow: 6px 16px 11px rgba(0,0,0,0.28);
+  cursor: pointer;
+  overflow: hidden;  /* 👈 Important for clip effect */
+  position: relative; /* 👈 Required for absolute ::before/::after */
+  z-index: 1;
+}
+
+.btn-white {
+  border: 2px solid var(--primary-color); /* or --bg-color */
+  color: var(--primary-color);
+  background-color: transparent;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn-white:hover {
+  color: white;
+}
+
+.btn-white::before,
+.btn-white::after {
+  content: "";
+  width: 0%;
+  height: 100%;
+  background-color: var(--primary-color); /* match border color */
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  transition: 0.5s;
+}
+.active {
+  color: rgb(68, 14, 216);
+}
+.btn-white::before {
+  left: 0;
+}
+
+.btn-white::after {
+  right: 0;
+}
+
+.btn-white:hover::before,
+.btn-white:hover::after {
+  width: 50%;
+}
+
+/* here we will start header section css */
+header{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+header .logo a img{
+  width: 50%;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+header nav{
+  display: flex;
+  width: 70%;
+  justify-content: space-around;
+  align-items: center;
+}
+header nav ul{
+  
+  display: flex;
+  list-style: none;
+}
+header nav ul li {
+  position: relative;
+  margin: 0 20px;
+}
+
+header nav ul li a {
+  position: relative; /* Required for ::before to align properly */
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+header nav ul li a::before {
+  content: '';
+  position: absolute;
+  bottom: 10px; /* closer to the text */
+  left: 0;
+  width: 0;
+  top: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease-in-out;
+}
+header nav ul li a:hover{
+  color: var(--primary-color);
+}
+header nav ul li a:hover::before {
+  width: 100%;
+}
+.bars{
+  background-color: #2563eb;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  display: none;
+  font-size: 20px;
+}
+@media screen and (max-width: 782px) {
+  .bars{
+    display: block;
+  }
+  header nav{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    z-index: 999;
+    top: 0px;
+    width: auto;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    right: 10%;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+  }
+  header nav ul{
+    flex-direction: column;
+    padding: 10px;
+  }
+}
+
+/* here we will End header section css */
+
+
+/* here i will start hero-section */
+.hero-section{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  /* padding: 50px; */
+}
+.hero-left{
+  width: 40%;
+}
+.hero-left .btn-blue{
+  background-color: #1e40af;
+  color: #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: 20px;
+  font-size: 18px;
+}
+.hero-left h1{
+  font-size: 40px;
+  color: var(--text-color);
+  font-weight: 700;
+}
+.hero-left span{
+  color: var(--primary-color);
+}
+.hero-left .btn-2 {
+  margin-top: 20px;
+}
+.hero-right{
+  width: 30%;
+}
+.hero-right .circle img{
+  width: 110%;
+}
+@media screen and (max-width: 782px) {
+  .hero-section{
+    flex-direction: column;
+    /* align-items: left; */
+    padding: 20px;
+  
+  }
+  .hero-left{
+    width: 100%;
+    text-align: left;
+  }
+  .hero-right{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    text-align: center;
+  }
+  
+}
+
+
+.video-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  /* transition: 0.4s; */
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.video-content {
+  position: relative;
+  width: 90%;
+  max-width: 700px;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.video-content video {
+  width: 100%;
+  height: 360px;
+}
+
+.video-modal .close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #fff;
+  color: #000;
+  font-size: 24px;
+  padding: 2px 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+/* here i will End hero-section */
+
+/* here i will start about-section */
+.about-us{
+  /* width: 100%;
+  height: 100vh; */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.about-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.about-header h1{
+  color: var(--text-color);
+}
+.about-header .rectangle
+{
+  background-color: var(--primary-color);;
+  width: 60px;
+  height: 4px;
+  border-radius: 30px;
+}
+
+.about-us .about-right{
+  width: 40%;
+}
+.about-us .about-right h1{
+  color: var(--text-color);
+  
+}
+.about-us .btn-about{
+   margin-top: 20px;
+}
+
+
+@media screen and (max-width: 782px) {
+  .about-us .about-right{
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+/* here i will End about-section */
+
+/* here we will start how it owrk section */
+.featured-scholarships {
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  background-color: #fff;
+  text-align: center;
+}
+
+.featured-scholarships .section-header h2 {
+  font-size: var(--font-size-2xl);
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.featured-scholarships .rectangle {
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary-color);;
+  margin: 0 auto 30px auto;
+  border-radius: 2px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.card {
+  border-radius: 10px;
+  position: relative;
+  background-color: var(--light-color);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  margin: 10px 0px;
+  font-size: var(--font-size-lg);
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.card p {
+  font-size: var(--font-size-base);
+  color: var(--text-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.card .btn {
+  margin-top: var(--spacing-sm);
+}
+.cards .card .images {
+  width: 100%;
+  height: 200px;
+  background-color: var(--primary-color);
+  overflow: hidden;
+  border-top-left-radius: var(--radius-md);
+  border-top-right-radius: var(--radius-md);
+  position: relative;
+}
+
+.cards .card .images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* ✨ Zoom effect on hover */
+.cards .card:hover .images img {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.a {
+  margin-left: 20px;
+  display: inline-block;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+  transform: translateY(-2px);
+}
+.btn-FS{
+  margin-top: 40px;
+} 
+@media screen and (max-width: 872px) {
+  .featured-scholarships {
+    margin-top: 200px;
+  } 
+}
+
+/* here we will End how it owrk section */
+
+/* here we will start FAQ section */
+.faq-section {
+  padding: 60px 20px;
+  /* background-color: #f8f9fa; */
+  text-align: center;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.faq-question {
+  /* width: 100%; */
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+  color: #007bff;
+}
+
+.faq-answer {
+  padding: 0 15px 15px;
+  display: none;
+  color: #555;
+}
+
+/* here we will End FAQ section */
+
+/* here we will start testnomial section */
+.testnomial-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+}
+/* .testnomial{
+  width: 100%;
+  height: 100vh;
+} */
+.swiper {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.swiper-wrapper .swiper-slide{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* background: #ff0e0e; */
+  /* padding: 0px 50px; */
+}
+.swiper-wrapper .swiper-slide .swiper-left{
+  text-transform: capitalize;
+}
+.thank-test {
+  color: var(--text-color); /* Or any contrasting color like #f0f0f0 */
+  font-size: 1.2rem;
+  max-width: 400px;
+}
+.swiper-left h2{
+  color: #0056b3;
+}
+.swiper-left h3{
+  color: #1f2937;
+  text-transform: capitalize;
+}
+@media screen and (max-width:872px) {
+  .testnomial-header{
+    flex-direction: column;
+    display: flex;
+    text-align: center;
+  }
+  .testnomial-header h1{
+    font-size: 20px;
+    
+  }
+  .swiper-wrapper .swiper-slide {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .swiper-left, .swiper-right {
+    flex: 1 1 300px;
+    max-width: 500px;
+  }
+  
+}
+
+/* here we will End testnomial section */
+
+/* here we will start footer section */
+.footer {
+  background-color: #021325;
+  color: #ffffff;
+  padding: 60px 20px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  margin-top: 50px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-column {
+  flex: 1 1 220px;
+}
+
+.footer-logo {
+  width: 120px;
+  margin-bottom: 15px;
+}
+
+.footer-column h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #f2f2f2;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: #ffffff;
+}
+
+.footer-column p {
+  margin-bottom: 10px;
+}
+
+.footer-column form input {
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+
+.footer-column .social-icons a {
+  color: #ccc;
+  margin-right: 10px;
+  font-size: 18px;
+  transition: color 0.3s ease;
+  margin-top: 100px;
+}
+
+.footer-column .social-icons a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #444;
+  padding-top: 20px;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #aaa;
+}
+.btn-blue{
+  background-color: rgb(8, 125, 221);
+  color: #fff;
+}
+/* here we will End  footer section */
+
+
+
+/* here we will start about page design */
+.about-section {
+  padding: 80px 20px;
+  /* background-color: #f9f9f9; */
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+  align-items: center;
+  gap: 40px;
+}
+
+.about-image {
+  flex: 1 1 40%;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.about-content {
+  flex: 1 1 55%;
+}
+
+.about-content h2 {
+  font-size: 32px;
+  color: #0a0a23;
+  margin-bottom: 20px;
+}
+
+.about-content p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.about-content h3 {
+  margin-top: 30px;
+  font-size: 22px;
+  color: #0a0a23;
+}
+
+.about-content ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.about-content ul li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.about-content ul li i {
+  color: #007BFF;
+  margin-right: 8px;
+}
+
+/* here we will End about page design */
+
+
+/* scholarship page css design start here */
+.scholarship-section {
+  padding: 50px 20px;
+  /* background-color: #f9f9f9; */
+}
+.scholarship-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.scholarship-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.scholarship-filters input,
+.scholarship-filters select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.scholarship-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.scholarship-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.btn-5{
+  margin-top: 50px;
+}
+
+.scholarship-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+.scholarship-filters select,
+.scholarship-filters input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+/* scholarship page css design End here */
+
+/* contact us page css design start here */
+.contact-section {
+  padding: 60px 20px;
+  /* background: #f9f9f9; */
+}
+
+.contact-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.contact-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+}
+
+.contact-form,
+.contact-info {
+  flex: 1;
+  min-width: 280px;
+  max-width: 500px;
+}
+
+.contact-form .form-group {
+  margin-bottom: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+.contact-info h3 {
+  margin-bottom: 20px;
+}
+
+.contact-info p {
+  margin: 10px 0;
+  font-size: 1em;
+  color: #333;
+}
+
+.contact-info .social-icons {
+  margin-top: 20px;
+}
+
+.contact-info .social-icons a {
+  margin-right: 10px;
+  font-size: 1.2em;
+  color: #007bff;
+}
+
+/* contact us page css design End here */
+
+
+.scholarship-details {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+}
+
+.scholarship-details .container {
+  max-width: 1000px;
+  margin: auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+.scholarship-details .title {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.scholarship-details .banner-img {
+  width: 100%;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.scholarship-details p, .scholarship-details li {
+  font-size: 1em;
+  line-height: 1.7;
+  color: #333;
+}
+
+.scholarship-details ul {
+  padding-left: 20px;
+  margin: 10px 0 20px;
+}
+
+.scholarship-details .btn {
+  display: inline-block;
+  margin-top: 20px;
+}
+
